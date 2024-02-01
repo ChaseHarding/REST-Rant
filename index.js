@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 // the value stored inexpress is actually a function, so now we call it to assign it to a variable 
 
+app.use('places', require('./controllers/places'))
+
 app.get ('/', (req, res) => {
     res.send('Hello World')
 })
