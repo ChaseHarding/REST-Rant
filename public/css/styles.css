@@ -2,4 +2,15 @@ h1 {
     text-align: center;
     color: cornflowerblue;
   }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (min-width: 760px) {
+    img {
+        max-width: 50%;
+    }
+  }
   
