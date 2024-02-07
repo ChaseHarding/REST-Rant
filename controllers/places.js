@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
         cuisines: 'Coffee, Burgers, Breakfast',
         pic: '/images/mcDonalds.jpg'
       }]
-      
+
     res.render('places/index', { places })
 })
 
@@ -24,6 +24,10 @@ router.get('/new', (req, res) => {
 
 router.get('/:id', (req, res) => {
   res.render('places/show', { place })
+})
+
+router.post('/', (req, res) => {
+  console.log(req.body)
 })
 
 
