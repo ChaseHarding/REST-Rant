@@ -7,9 +7,10 @@ const app = express();
 // adding code above the routes to define the view engine(JSX)
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
-app.use(methodOverride('_method'))
+
 
 // Controllers & Routes
 app.use('/places', require('./controllers/places'))
