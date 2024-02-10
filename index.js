@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express');
+const methodOverride = require('method-override')
 const app = express();
 // the value stored inexpress is actually a function, so now we call it to assign it to a variable 
 
@@ -8,6 +9,7 @@ app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 // Controllers & Routes
 app.use('/places', require('./controllers/places'))
