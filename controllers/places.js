@@ -6,6 +6,11 @@ router.get("/", (req, res) => {
   res.render("places/index", { places });
 });
 
+
+router.get("/new", (req, res) => {
+  res.render("places/new");
+});
+
 // Get details of a place
 router.get("/:id", (req, res) => {
   let id = Number(req.params.id);
@@ -18,9 +23,6 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.get("/new", (req, res) => {
-  res.render("places/new");
-});
 
 router.get("/:id/edit", (req, res) => {
   let id = Number(req.params.id);
