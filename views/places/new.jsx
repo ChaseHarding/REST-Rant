@@ -1,11 +1,24 @@
 const React = require("react");
 const Def = require("../default");
 
-function new_form() {
+function new_form(data) {
+  let message = 
+  <div className="alert-danger" role="alert">
+  <a href="#" class="alert-link"></a>
+</div>
+  
+  if (data.message) {
+    message = 
+    <h4 className="alert alert-danger">
+      {data.message}
+    </h4>
+    
+  }
   return (
     <Def>
       <main>
         <h1>Add a New Place</h1>
+        {message}
         <form method="POST" action="/places">
           <div className="form-group">
             <label htmlFor="name">Place Name</label>

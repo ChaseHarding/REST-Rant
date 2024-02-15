@@ -1,7 +1,7 @@
 const React = require("react");
 const Def = require("../default");
 
-function show(data) {
+function show() {
   const cuisinesBadges = data.place.cuisines.split(",").map((cuisine) => {
     return (
       <span key={cuisine} className="badge rounded-pill text-bg-info me-2">
@@ -32,7 +32,7 @@ function show(data) {
               {data.place.showEstablished()}
             </h3>
             <h4>
-              Serving {data.place.cuisines}
+              Serving {data.place}
             </h4>
           </div>
         </div>
