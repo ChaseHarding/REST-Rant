@@ -16,12 +16,24 @@ function show(data) {
           <div className="col">
             <img src={data.place.pic} alt={data.place.name} />
           </div>
+          <h3>
+            Located in {data.place.city}, {data.place.state}
+          </h3>
           <div className="col">
             <h1>{data.place.name}</h1>
             <p>
               Located at: {data.place.city}, {data.place.state}
             </p>
             <p>{cuisinesBadges}</p>
+            <h2>
+              Description
+            </h2>
+            <h3>
+              {data.place.showEstablished()}
+            </h3>
+            <h4>
+              Serving {data.place.cuisines}
+            </h4>
           </div>
         </div>
         <div className="row align-items-center">
