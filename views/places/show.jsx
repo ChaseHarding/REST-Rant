@@ -1,7 +1,27 @@
 const React = require("react");
 const Def = require("../default");
 
-function show() {
+function show(data) {
+  let comments = (
+    <h3 className="inactive">
+      No comments yet!
+    </h3>
+  )
+  if (data.place.comments.length) {
+    comments = data.place.comments.map(c => {
+      return (
+        <div className="border">
+          <h2 className="rant">{c.rant ? 'Rant!' : 'Rave!'}</h2>
+          <h4>{c.content}</h4>
+          <h3>
+            <strong>- {c.author}</strong>
+          </h3>
+          <h4>Rating: {c.stars}</h4>
+        </div>
+      )
+    })
+  }
+  
   const cuisinesBadges = data.place.cuisines.split(",").map((cuisine) => {
     return (
       <span key={cuisine} className="badge rounded-pill text-bg-info me-2">
@@ -9,6 +29,7 @@ function show() {
       </span>
     );
   });
+
   return (
     <Def>
       <main className="container">
@@ -21,9 +42,9 @@ function show() {
           </h3>
           <div className="col">
             <h1>{data.place.name}</h1>
-            <p>
+            {/* <p>
               Located at: {data.place.city}, {data.place.state}
-            </p>
+            </p> */}
             <p>{cuisinesBadges}</p>
             <h2>
               Description
@@ -31,15 +52,45 @@ function show() {
             <h3>
               {data.place.showEstablished()}
             </h3>
-            <h4>
-              Serving {data.place}
-            </h4>
           </div>
         </div>
+
+        <h2>Comments</h2>
+        {comments}
+
+        <h2>Got Your own Rant or Rave?</h2>
+        <form action={`/places/${data.place.id}/comment`} method="POST" >
+          <div className="row">
+          <div className="form-group col-sm-12">
+            <label htmlFor="content">Content</label>
+            <textarea id="content" name="content" className="form-control"></textarea>
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col-sm-4">
+              <label htmlFor="author">Author</label>
+             <input id="author" name="author" className="form-control"></input>
+            </div>
+
+            <div className="form-group col-sm-4">
+              <label htmlFor="stars">Star Rating</label>
+              <input type="range" step="0.5" min="1" max="5" id="stars" name="stars" className="form-control"></input>
+            </div>
+
+            <div className="form-group col-sm-1">
+             <label htmlFor="rant" className="mt-4">Rant?</label>
+             <input type="checkbox" id="rant" name="rant" className="form-check-input mt-4" ></input>
+            </div>
+          </div>
+          <input type="submit" className="btn btn-primary" value="Add comment"></input>
+
+
+        </form>
+
         <div className="row align-items-center">
           <div className="col">
             <a
-              href={`/places/${data.id}/edit`}
+              href={`/places/${data.place.id}/edit`}
               className="btn btn-warning my-2"
             >
               Edit
@@ -58,7 +109,7 @@ function show() {
                 />
               </svg>
             </a>
-            <form method="POST" action={`/places/${data.id}?_method=DELETE`}>
+            <form method="POST" action={`/places/${data.place.id}?_method=DELETE`}>
               <button type="submit" className="btn btn-danger my-2">
                 Delete
                 <svg
