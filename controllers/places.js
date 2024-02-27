@@ -106,13 +106,13 @@ router.post('/:id/rant', (req, res) => {
   res.send('GET /places/:id/rant stub')
 })
 
-// router.delete('/comment/commentId', (req, res) => {
+// router.delete('/comment/:commentId', (req, res) => {
 //   db.Comment.findByIdAndDelete(req.params.commentId)
 //   .then(comment => {
 //     if (!comment) {
 //     return res.render('error404')
 //     }
-//     res.redirect(`/places/${comment.place}`)
+//     res.render(`/places/edit/${comment.place}`)
 //   })
 //   .catch(err => {
 //     console.log('error deleting comment:', err)
